@@ -13,6 +13,9 @@ export class CanvasComponent {
   
   constructor(){
     import('widgets/first-widget/first-widget.component')
-      .then((component) => this.vcr.createComponent(component.FirstWidgetComponent))
+      .then((component) => {
+        this.vcr.clear();
+        this.vcr.createComponent(component.FirstWidgetComponent);
+      })
   }
 }

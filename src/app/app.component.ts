@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CanvasComponent } from './canvas/canvas.component';
 import {MatButtonModule} from '@angular/material/button';
+import { s } from './signal-test';
 
 @Component({
     selector: 'app-root',
@@ -10,4 +11,9 @@ import {MatButtonModule} from '@angular/material/button';
     standalone: true
 })
 export class AppComponent {
+    s = s;
+
+    click(): void{
+        s.set(s() + 1)
+    }
 }
