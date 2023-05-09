@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { s } from 'src/app/signal-test';
 
 @Component({
   selector: 'app-first-widget',
@@ -9,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./first-widget.component.scss']
 })
 export class FirstWidgetComponent {
-
+  s = s;
 }

@@ -1,18 +1,13 @@
-import { Component, ViewContainerRef, inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { CanvasComponent } from './canvas/canvas.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-
+    imports: [CanvasComponent, MatButtonModule],
     standalone: true
 })
 export class AppComponent {
-  vcr = inject(ViewContainerRef);
-  
-  constructor(){
-    import('widgets/first-widget/first-widget.component').then((component) => {
-      this.vcr.createComponent(component.FirstWidgetComponent);
-    })
-  }
 }
