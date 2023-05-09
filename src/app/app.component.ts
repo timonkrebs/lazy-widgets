@@ -11,7 +11,7 @@ export class AppComponent {
   vcr = inject(ViewContainerRef);
   
   constructor(){
-    import('./first-widget/first-widget.component').then((component) => {
+    import('widgets/first-widget/first-widget.component').then((component) => {
       this.vcr.createComponent(component.FirstWidgetComponent);
     })
   }
