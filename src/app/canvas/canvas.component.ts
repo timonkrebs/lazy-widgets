@@ -1,39 +1,31 @@
-import { Component, ViewChild, ViewContainerRef, inject } from '@angular/core';
+import { Component, QueryList, ViewChildren, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GridsterModule } from 'angular-gridster2';
-import { MatCardModule } from '@angular/material/card'
+import { GridsterComponent, GridsterItemComponent } from 'angular-gridster2';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 
 @Component({
   selector: 'app-canvas',
   standalone: true,
-  imports: [CommonModule, GridsterModule, MatCardModule],
+  imports: [CommonModule, GridsterComponent, GridsterItemComponent],
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.scss']
 })
 export class CanvasComponent {
-  @ViewChild('canvas', { read: ViewContainerRef })
-  private canvas: ViewContainerRef;
+  @ViewChildren('canvas', { read: ViewContainerRef })
+  private canvas: QueryList<ViewContainerRef>;
   options: GridsterConfig;
-  dashboard: Array<GridsterItem>;
+  dashboard: Array<GridsterItem> = [];
 
   constructor() {
-
-
-    import('widgets/first-widget/first-widget.component')
-      .then((component) => {
-        this.canvas.createComponent(component.FirstWidgetComponent);
-        setTimeout(() => {
-          this.canvas.createComponent(component.FirstWidgetComponent);
-        }, 10000)
-      })
   }
 
   ngOnInit() {
     this.options = {
       gridType: 'fit',
-      minCols: 1, // minimum amount of columns in the grid
+      minCols: 6, // minimum amount of columns in the grid
       minRows: 10, // minimum amount of rows in the grid
+      enableEmptyCellDrop: true,
+      emptyCellDropCallback: this.emptyCellClick.bind(this),
       draggable: {
         enabled: true, // enable/disable draggable items
         ignoreContentClass: 'gridster-item-content', // default content class to ignore the drag event from
@@ -60,10 +52,19 @@ export class CanvasComponent {
         // Arguments: item, gridsterItem, event
       },
     };
+  }
 
-    this.dashboard = [
-      { cols: 2, rows: 3, y: 0, x: 0 },
-      { cols: 2, rows: 5, y: 5, x: 4 }
-    ];
+  emptyCellClick(event: MouseEvent, item: GridsterItem): void {
+    console.info('empty cell click', event, item);
+
+    this.dashboard.push(item);
+    import('widgets/first-widget/first-widget.component')
+      .then((component) => {
+        setTimeout(() => {
+          this.canvas.get(this.dashboard.length - 1)
+            ?.createComponent(component.FirstWidgetComponent).setInput("i", this.dashboard.length);
+        });
+      })
+
   }
 }

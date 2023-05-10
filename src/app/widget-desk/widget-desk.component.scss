@@ -8,7 +8,7 @@
     border-radius: 4px;
     overflow: hidden;
   }
-  
+
   .example-box {
     padding: 20px 10px;
     border-bottom: solid 1px #0e0e0e;
@@ -19,7 +19,8 @@
     justify-content: space-between;
     box-sizing: border-box;
     cursor: move;
-    background: rgb(208, 255, 210);
+    background: rgba($color: #ffffff, $alpha: .2);
+    
     font-size: 14px;
   }
 

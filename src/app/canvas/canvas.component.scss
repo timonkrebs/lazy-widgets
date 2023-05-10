@@ -1,12 +1,12 @@
-:host {
-    padding: 10px;
-    height: 90vh;
+gridster {
+    background-color: #ffffff;
 }
 
 gridster-item {
     background-color: rgba($color: #ffffff, $alpha: .2);
-}
 
-mat-card {
-    height: 100%;
+    border-top: 1px solid #d0d0d075;
+    border-bottom: 1px solid #d0d0d0;
+    
+    border-radius: 5px;
 }

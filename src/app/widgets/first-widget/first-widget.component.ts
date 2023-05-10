@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { s } from 'src/app/signal-test';
 
@@ -10,5 +10,6 @@ import { s } from 'src/app/signal-test';
   styleUrls: ['./first-widget.component.scss']
 })
 export class FirstWidgetComponent {
+  @Input() i: number = 1;
   s = s;
 }
