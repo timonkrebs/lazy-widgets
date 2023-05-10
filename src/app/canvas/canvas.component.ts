@@ -2,6 +2,7 @@ import { Component, QueryList, ViewChildren, ViewContainerRef } from '@angular/c
 import { CommonModule } from '@angular/common';
 import { GridsterComponent, GridsterItemComponent } from 'angular-gridster2';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
+import WidgetFactory from 'widgets/widget-factory';
 
 @Component({
   selector: 'app-canvas',
@@ -58,13 +59,9 @@ export class CanvasComponent {
     console.info('empty cell click', event, item);
 
     this.dashboard.push(item);
-    import('widgets/first-widget/first-widget.component')
-      .then((component) => {
-        setTimeout(() => {
-          this.canvas.get(this.dashboard.length - 1)
-            ?.createComponent(component.FirstWidgetComponent).setInput("i", this.dashboard.length);
-        });
-      })
-
+    setTimeout(() => {
+       WidgetFactory.getWidget('app-first-widget', this.canvas.get(this.dashboard.length - 1)!)
+       .then(c => c.setInput("i", this.dashboard.length));
+    })
   }
 }
