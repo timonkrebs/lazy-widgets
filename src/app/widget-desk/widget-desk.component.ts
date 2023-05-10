@@ -10,11 +10,10 @@ import { CommonModule } from '@angular/common';
 })
 export class WidgetDeskComponent {
 
-  widgets = ['widgets/first-widget/first-widget.component']
+  widgets = ['app-first-widget','app-update-count-widget']
 
   dragStartHandler(event: DragEvent, widget: string) {
     if (event.dataTransfer) {
-      console.log(event)
       event.dataTransfer.setData('widget', widget);
       event.dataTransfer.dropEffect = 'copy';
     }

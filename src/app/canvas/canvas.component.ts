@@ -55,13 +55,21 @@ export class CanvasComponent {
     };
   }
 
-  emptyCellClick(event: MouseEvent, item: GridsterItem): void {
+  emptyCellClick(event: DragEvent, item: GridsterItem): void {
     console.info('empty cell click', event, item);
 
-    this.dashboard.push(item);
-    setTimeout(() => {
-       WidgetFactory.getWidget('app-first-widget', this.canvas.get(this.dashboard.length - 1)!)
-       .then(c => c.setInput("i", this.dashboard.length));
-    })
+    if (event.dataTransfer) {
+      const widgetSelector = event.dataTransfer!.getData('widget')
+      this.dashboard.push(item);
+      setTimeout(() => {
+        WidgetFactory.getWidget(widgetSelector, this.canvas.get(this.dashboard.length - 1)!)
+          .then(c => {
+            if(widgetSelector === 'app-first-widget'){
+              c.setInput("i", this.dashboard.length)
+            }
+          });
+      });
+    }
+
   }
 }
