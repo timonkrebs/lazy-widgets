@@ -1,7 +1,11 @@
 <button (click)="click()" mat-button>Click me!</button>
 {{s()}}
-
-<div id="grid">
-    <app-widget-desk/>
-    <app-canvas/>
-</div>
+<button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer>
+        <app-widget-desk/>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-canvas/>
+    </mat-drawer-content>
+</mat-drawer-container>
