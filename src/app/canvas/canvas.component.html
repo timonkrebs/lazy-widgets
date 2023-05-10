@@ -1,1 +1,8 @@
-<ng-container #canvas />
+<gridster [options]="options">
+    <gridster-item [item]="item" *ngFor="let item of dashboard">
+        <mat-card>Simple card
+        <ng-container #canvas />
+        </mat-card>mat-card>
+    </gridster-item>
+  </gridster>
+
