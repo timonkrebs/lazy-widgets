@@ -1,5 +1,9 @@
-{{s()}}
-<button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+<mat-toolbar>
+    <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button> 
+    <span class="example-spacer"></span> 
+    <span>SIGNAL VALUE: {{s()}}</span>
+</mat-toolbar>
+
 <mat-drawer-container class="example-container">
     <mat-drawer #drawer mode="side">
         <app-widget-desk/>

@@ -1,7 +1,11 @@
 mat-drawer-container {
     position: absolute;
     bottom: 0;
-    height: calc(100% - 50px);
+    height: calc(100% - 56px);
     left: 0;
     right: 0;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
 }

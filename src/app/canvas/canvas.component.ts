@@ -57,9 +57,9 @@ export class CanvasComponent {
 
   emptyCellClick(event: DragEvent, item: GridsterItem): void {
     console.info('empty cell click', event, item);
-
     if (event.dataTransfer) {
       const widgetSelector = event.dataTransfer!.getData('widget')
+      item.rows = 2;
       this.dashboard.push(item);
       setTimeout(() => {
         WidgetFactory.getWidget(widgetSelector, this.canvas.get(this.dashboard.length - 1)!)
